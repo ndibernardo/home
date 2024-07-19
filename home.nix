@@ -149,6 +149,37 @@
       package = pkgs.jdk17;
     };
 
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+      prefix = "C-a";
+      #  shell = "\${pkgs.zsh}/bin/zsh";
+      clock24 = true;
+      keyMode = "vi";
+      mouse = true;
+      sensibleOnTop = true;
+      terminal = "alacritty";
+
+      plugins = with pkgs; [
+        {
+          plugin = (tmuxPlugins.mkTmuxPlugin {
+            pluginName = "tinted-tmux";
+            version = "unstable";
+            # rtpFilePath = "tmuxcolors.tmux";
+            src = pkgs.fetchFromGitHub {
+              owner = "tinted-theming";
+              repo = "tinted-tmux";
+              rev = "98b6a7f718454e55f6069f9d492d23703d450155";
+              sha256 = "sha256-z+wOt9NNVYv5Ow7u/RohHgxOJELmzwxerRjW74hAEFM=";
+              };
+            });
+          extraConfig = ''
+            set -g @tinted-color 'base16-default-dark'
+          '';
+        }
+      ];
+    };
+
     zsh = {
       enable = true;
       enableCompletion = true;
