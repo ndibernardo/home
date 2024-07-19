@@ -1,4 +1,8 @@
-{ pkgs, ...}: {
+{ pkgs, lib, ...}: {
+
+  imports = [
+    ./darwin.nix
+  ];
 
   home = {
     homeDirectory = "/Users/nicola";
@@ -51,6 +55,58 @@
   };
 
   programs = {
+    alacritty = {
+      enable = true;
+      settings = {
+        window = {
+          title = "tty";
+          dynamic_title = true;
+          padding = {
+            x = 10;
+            y = 10;
+          };
+        };
+
+        font = {
+          size = 13;
+          normal = {
+            family = "SF Mono";
+          };
+        };
+
+        colors = {
+          primary = {
+            background = "#181818";
+            foreground = "#d8d8d8";
+          };
+          cursor = {
+            text = "#181818";
+            cursor = "#d8d8d8";
+          };
+          normal = {
+            black   = "#181818";
+            red     = "#ab4642";
+            green   = "#a1b56c";
+            yellow  = "#f7ca88";
+            blue    = "#7cafc2";
+            magenta = "#ba8baf";
+            cyan    = "#86c1b9";
+            white   = "#d8d8d8";
+          };
+          bright = {
+            black   = "#585858";
+            red     = "#ab4642";
+            green   = "#a1b56c";
+            yellow  = "#f7ca88";
+            blue    = "#7cafc2";
+            magenta = "#ba8baf";
+            cyan    = "#86c1b9";
+            white   = "#f8f8f8";
+          };
+        };
+      };
+    };
+
     direnv = {
       enable = true;
       enableZshIntegration = true;
