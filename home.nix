@@ -152,6 +152,10 @@
     zsh = {
       enable = true;
       enableCompletion = true;
+      completionInit = ''
+        autoload -Uz compinit && compinit
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+      '';
       history = {
         size = 50000;
         expireDuplicatesFirst = true;
