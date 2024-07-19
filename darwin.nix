@@ -25,4 +25,6 @@
       ''
     else
       "";
+
+  home.file."Applications/Home Manager Apps".enable = false;
 }
