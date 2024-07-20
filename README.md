@@ -1,4 +1,4 @@
-# System
+# Home
 
 MacOs home configuration.
 

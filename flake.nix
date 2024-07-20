@@ -19,7 +19,7 @@
       system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      homeConfigurations.rigel = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.macbook = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules = [
