@@ -1,4 +1,4 @@
-{ pkgs, lib, ...}: {
+{ pkgs, ...}: {
 
   imports = [
     ./darwin.nix
@@ -68,9 +68,9 @@
         };
 
         font = {
-          size = 13;
+          size = 15;
           normal = {
-            family = "SF Mono";
+            family = "PragmataPro Mono";
           };
         };
 
@@ -153,7 +153,7 @@
       enable = true;
       baseIndex = 1;
       prefix = "C-a";
-      #  shell = "\${pkgs.zsh}/bin/zsh";
+      shell = "\${pkgs.zsh}/bin/zsh";
       clock24 = true;
       keyMode = "vi";
       mouse = true;
@@ -165,7 +165,6 @@
           plugin = (tmuxPlugins.mkTmuxPlugin {
             pluginName = "tinted-tmux";
             version = "unstable";
-            # rtpFilePath = "tmuxcolors.tmux";
             src = pkgs.fetchFromGitHub {
               owner = "tinted-theming";
               repo = "tinted-tmux";
