@@ -1,22 +1,18 @@
-{ pkgs, ...}: {
-
-  imports = [
-    ./darwin.nix
-  ];
+{ pkgs, ... }: {
 
   home = {
     homeDirectory = "/Users/nicola";
     username = "nicola";
     stateVersion = "24.05";
-    
+
     packages = with pkgs; [
       #cli
       coreutils
       curl
       fd
       htop
+      jq
       ripgrep
-      tmux
       tree
       unzip
       wget
@@ -55,58 +51,6 @@
   };
 
   programs = {
-    alacritty = {
-      enable = true;
-      settings = {
-        window = {
-          title = "tty";
-          dynamic_title = true;
-          padding = {
-            x = 10;
-            y = 10;
-          };
-        };
-
-        font = {
-          size = 15;
-          normal = {
-            family = "PragmataPro Mono";
-          };
-        };
-
-        colors = {
-          primary = {
-            background = "#181818";
-            foreground = "#d8d8d8";
-          };
-          cursor = {
-            text = "#181818";
-            cursor = "#d8d8d8";
-          };
-          normal = {
-            black   = "#181818";
-            red     = "#ab4642";
-            green   = "#a1b56c";
-            yellow  = "#f7ca88";
-            blue    = "#7cafc2";
-            magenta = "#ba8baf";
-            cyan    = "#86c1b9";
-            white   = "#d8d8d8";
-          };
-          bright = {
-            black   = "#585858";
-            red     = "#ab4642";
-            green   = "#a1b56c";
-            yellow  = "#f7ca88";
-            blue    = "#7cafc2";
-            magenta = "#ba8baf";
-            cyan    = "#86c1b9";
-            white   = "#f8f8f8";
-          };
-        };
-      };
-    };
-
     direnv = {
       enable = true;
       enableZshIntegration = true;
@@ -117,7 +61,7 @@
       enable = true;
     };
 
-    home-manager = { 
+    home-manager = {
       enable = true;
     };
 
@@ -153,27 +97,26 @@
       enable = true;
       baseIndex = 1;
       prefix = "C-a";
-      shell = "\${pkgs.zsh}/bin/zsh";
       clock24 = true;
       keyMode = "vi";
       mouse = true;
       sensibleOnTop = true;
-      terminal = "alacritty";
 
       plugins = with pkgs; [
         {
           plugin = (tmuxPlugins.mkTmuxPlugin {
             pluginName = "tinted-tmux";
             version = "unstable";
-            src = pkgs.fetchFromGitHub {
+            rtpFilePath = "tmuxcolors.tmux";
+            src = fetchFromGitHub {
               owner = "tinted-theming";
               repo = "tinted-tmux";
               rev = "98b6a7f718454e55f6069f9d492d23703d450155";
               sha256 = "sha256-z+wOt9NNVYv5Ow7u/RohHgxOJELmzwxerRjW74hAEFM=";
-              };
-            });
+            };
+          });
           extraConfig = ''
-            set -g @tinted-color 'base16-default-dark'
+            set -g @tinted-color 'base16-one-light'
           '';
         }
       ];
@@ -194,21 +137,21 @@
         ignoreSpace = true;
       };
       localVariables = {
-        PS1="%~ %# ";
+        PS1 = "%~ %# ";
       };
       shellAliases = {
-        ga  = "git add";
-        gb  = "git branch";
-        gc  = "git checkout";
+        ga = "git add";
+        gb = "git branch";
+        gc = "git checkout";
         gcm = "git commit -m";
-        gd  = "git pull origin";
-        gs  = "git status";
+        gd = "git pull origin";
+        gs = "git status";
         gup = "git push -u origin HEAD";
-        ls  = "ls -G -a";
-        ll  = "ls -G -Al";
-        lh  = "lh -G -Alh";
-        k   = "kubectl";
-        d   = "docker";
+        ls = "ls -G -a";
+        ll = "ls -G -Al";
+        lh = "lh -G -Alh";
+        k = "kubectl";
+        d = "docker";
       };
     };
   };
