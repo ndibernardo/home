@@ -10,6 +10,7 @@
       coreutils
       curl
       fd
+      grpcurl
       htop
       jq
       ripgrep
@@ -41,6 +42,9 @@
       #nix
       nixd
       nixpkgs-fmt
+
+      #proto
+      protobuf
 
       #rust
       rustup
